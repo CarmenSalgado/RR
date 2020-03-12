@@ -21,9 +21,8 @@
 package edu.cecar.test;
 
 import edu.cecar.vista.GuiPrincipal;
-import edu.cecar.componentesInterfaces.InterfaceDAO;
+import edu.cecar.componentesDAO.DAOInterface;
 import edu.cecar.componentesReutilizables.*;
-import edu.cecar.controlador.*;
 
 /**
 *
