@@ -41,19 +41,19 @@ public class ControladorDAO implements DAOInterface<Multimedia>{
     
  private String tabla = "multimedia";
     @Override
-    public String insert(Multimedia s) {
+    public String insert(Multimedia multi) {
      
      String result="";
      
      try {
          PreparedStatement ps = ConectarMySQL.getConexion().prepareStatement("insert into"
                                                                              +tabla
-                                                                             +"values()");
+                                                                             +"values(?,?,?,?)");
          
-         ps.setString(1, s.toString());
-         ps.setString(2, s.toString());
-         ps.setString(3, s.toString());
-         ps.setString(4, s.toString());
+         ps.setString(1, (String) multi.getArchivo());
+         ps.setString(2, multi.getTipo());
+         ps.setString(2, multi.getFecha());;
+         ps.setString(4, multi.getUrl());
          ps.execute();
          
               
@@ -65,7 +65,7 @@ public class ControladorDAO implements DAOInterface<Multimedia>{
     }
 
     @Override
-    public String update(Multimedia s) {
+    public String update(Multimedia multi) {
      
      String result="";
      
@@ -73,11 +73,12 @@ public class ControladorDAO implements DAOInterface<Multimedia>{
          PreparedStatement ps = ConectarMySQL.getConexion().prepareStatement("update"+
                                                                                 tabla+
                                                  " set fecha = ?, tipo = ? " +
-					                           " where multimedia = ?");
+					                           " where multi = ?");
          
-         ps.setString(1, s.toString());
-         ps.setString(2, s.toString());
-         ps.setString(3, s.toString());
+         ps.setString(1, (String) multi.getArchivo());
+         ps.setString(2, multi.getTipo());
+         ps.setString(2, multi.getFecha());;
+         ps.setString(4, multi.getUrl());
          ps.execute();
          
               
@@ -96,7 +97,7 @@ public class ControladorDAO implements DAOInterface<Multimedia>{
      try {
          PreparedStatement ps = ConectarMySQL.getConexion().prepareStatement("delete  from " +
                                                                                        tabla +
-                                                                           " where multimedia = ?");
+                                                                           " where multi = ?");
          
          ps.setString(1, criteriosBusqueda[0]);
          ps.execute();
@@ -123,9 +124,9 @@ public class ControladorDAO implements DAOInterface<Multimedia>{
          
           if (resultSet.next()) {
           
-//            multimedia = new Multimedia(resultSet.getString(1),
-//                                resultSet.getString(2),
-//                               resultSet.getString(3));
+            multimedia = new Multimedia(resultSet.getString(1),
+                                        resultSet.getString(2),
+                                        resultSet.getString(3));
           
           }
          

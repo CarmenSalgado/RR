@@ -11,6 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 
 /**
@@ -18,6 +19,8 @@ import javax.swing.JTextField;
  * @author Casalg
  */
 public class GuiPrincipal extends javax.swing.JFrame {
+
+    private Object txtruta;
 
     /**
      * Creates new form GuiPrincipal
@@ -216,9 +219,20 @@ public class GuiPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnscrapActionPerformed
 
     private void btnguardaBDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardaBDActionPerformed
-        // TODO add your handling code here:
-//     ControladorDAO dao = new ControladorDAO();
-//     dao.insert("");
+        
+     ControladorDAO dao = new ControladorDAO();
+
+        // Exportar BD:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int se = chooser.showSaveDialog(null);
+        if (se == JFileChooser.APPROVE_OPTION) {
+         String url = chooser.getSelectedFile().getPath();
+         //txtruta.setText(url);
+        }
+        
+
+
      
         
     }//GEN-LAST:event_btnguardaBDActionPerformed
